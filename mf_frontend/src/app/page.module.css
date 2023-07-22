@@ -7,6 +7,15 @@
   min-height: 100vh;
 }
 
+.scene {
+  width: 100vw;
+  height: 100vh;
+}
+
+.canvas {
+  background: #fff;
+}
+
 .description {
   display: inherit;
   justify-content: inherit;
@@ -51,7 +60,9 @@
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
-  transition: background 200ms, border 200ms;
+  transition:
+    background 200ms,
+    border 200ms;
 }
 
 .card span {
@@ -97,7 +108,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);

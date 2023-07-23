@@ -15,9 +15,15 @@ defmodule MfBackendWeb.LobbyController do
         |> put_status(:created)
         |> json(lobby)
       {:error, changeset} ->
+        errors = Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
+          Enum.reduce(opts, msg, fn {key, value}, acc ->
+            String.replace(acc, "%{#{key}}", to_string(value))
+          end)
+        end)
         conn
         |> put_status(:unprocessable_entity)
-        |> json(changeset)
+        |> json(%{"errors" => errors})
+        |> halt()
     end
   end
 end

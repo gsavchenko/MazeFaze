@@ -2,6 +2,7 @@
   "name": "mf_frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,12 +10,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.32.0",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
     "next": "13.4.10",
+    "phoenix": "^1.7.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.1.6"

@@ -12,6 +12,8 @@ defmodule MfBackendWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    # TODO: this is a security risk, update this to only allow the frontend
+    plug CORSPlug, origin: "*"
   end
 
   scope "/", MfBackendWeb do

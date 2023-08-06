@@ -12,6 +12,7 @@ import Floor from "./components/Floor";
 import { Grid } from "./components/three/grid";
 import { Player } from "./components/three/player";
 import { useMemo } from "react";
+import { InstancedPlayer } from "./components/three/instancedPlayer";
 
 enum Controls {
   forward = "forward",
@@ -50,7 +51,8 @@ export default function Home() {
           <Grid />
           <OrbitControls makeDefault />
           <axesHelper args={[5]} />
-          <Player />
+          {/* <Player /> */}
+          <InstancedPlayer />
         </Canvas>
       </KeyboardControls>
     </div>

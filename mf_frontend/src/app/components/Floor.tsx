@@ -13,6 +13,6 @@ export function Floor(props: ThreeElements["mesh"]) {
   );
 }
 
-extend({ BoxGeometry });
+// extend({ BoxGeometry });
 
 export default Floor;

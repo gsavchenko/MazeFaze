@@ -3,7 +3,7 @@
 echo "Setup machine for Elixir development"
 echo "Install PostgreSQL"
 
-brew install postgresql@15
+brew install postgresql
 
 echo "Install Erlang and Elixir"
 

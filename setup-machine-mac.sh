@@ -20,4 +20,8 @@ mix archive.install hex phx_new
 
 # create dev database
 mix deps.get
+
+# create user for databse
+createuser -s postgres
+
 mix ecto.create

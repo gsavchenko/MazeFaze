@@ -4,6 +4,8 @@ Dive into the cybernetic chaos of MazeFaze, a thrilling multiplayer maze runner 
 # Setup
 ## For Ubuntu 23.04
 1. Run ./setup-machine-linux
+## For macOS 14.0
+1. Run ./setup-machine-macos
 
 # To run
 Each directory has a readme with getting started info

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettify": "pnpm exec prettier . --write"
   },
   "dependencies": {
     "@react-three/fiber": "^8.15.9",
@@ -24,6 +25,8 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@types/phoenix": "^1.6.3"
+    "@types/phoenix": "^1.6.3",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "3.0.3"
   }
 }

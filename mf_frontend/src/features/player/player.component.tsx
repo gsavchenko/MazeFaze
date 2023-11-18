@@ -1,5 +1,5 @@
 import { KeyboardControls, KeyboardControlsEntry } from "@react-three/drei";
-import { PlayerMesh } from "./instancedMesh";
+import { PlayerMesh } from "./playerMesh";
 import { useCallback, useMemo, useState } from "react";
 
 export enum Controls {

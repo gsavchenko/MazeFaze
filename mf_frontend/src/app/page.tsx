@@ -7,6 +7,7 @@ import { Grid } from "./components/three/grid.component";
 import { Player } from "@/features/player";
 import styled from "styled-components";
 import { Indicator } from "./components";
+import { useEffect, useState } from "react";
 
 const StyledScene = styled.div`
   width: 90vw; // 100% of the viewport width
@@ -25,12 +26,22 @@ const IndicatorContainer = styled.div`
 `;
 
 export default function Home() {
-  usePhoenixSocket();
+  const { messages } = usePhoenixSocket("room:lobby");
+  const [connectionStatus, setConnectionStatus] = useState("disconnected");
+
+  useEffect(() => {
+    const lastMessage = messages[messages.length - 1];
+
+    setConnectionStatus(lastMessage?.status || "disconnected");
+  }, [messages]);
 
   return (
     <>
       <IndicatorContainer>
-        <Indicator color="red" label="connection" />
+        <Indicator
+          color={connectionStatus === "connected" ? "green" : "red"}
+          label="connection"
+        />
       </IndicatorContainer>
       <StyledScene>
         <Canvas

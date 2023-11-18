@@ -4,10 +4,18 @@ defmodule MfBackendWeb.RoomChannel do
   @impl true
   def join("room:lobby", payload, socket) do
     if authorized?(payload) do
+      # Sending a custom message right after joining successfully
+      send(self(), :after_join)
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}
     end
+  end
+
+  @impl true
+  def handle_info(:after_join, socket) do
+    push(socket, "connection_ack", %{status: "connected"})
+    {:noreply, socket}
   end
 
   # Channels can be used in a request/response fashion

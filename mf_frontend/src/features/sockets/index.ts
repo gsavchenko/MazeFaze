@@ -1,1 +1,1 @@
-export { usePhoenixSocket } from "./socket.hooks";
+export { usePhoenixChannel as usePhoenixSocket } from "./socket.hooks";

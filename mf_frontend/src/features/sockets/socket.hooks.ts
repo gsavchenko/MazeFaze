@@ -1,7 +1,10 @@
-import { useEffect } from "react";
-import { Socket } from "phoenix";
+import { useEffect, useState } from "react";
+import { Channel, Socket } from "phoenix";
 
-export const usePhoenixSocket = () => {
+export const usePhoenixChannel = (channelTopic: string) => {
+  const [channel, setChannel] = useState<Channel | null>(null);
+  const [messages, setMessages] = useState<{ status: string }[]>([]);
+
   useEffect(() => {
     // Initialize the socket
     let socket = new Socket("ws://localhost:4000/socket", {
@@ -10,7 +13,8 @@ export const usePhoenixSocket = () => {
     socket.connect();
 
     // Join the channel
-    let channel = socket.channel("room:lobby", {});
+    // room:lobby
+    let channel = socket.channel(channelTopic, {});
     channel
       .join()
       .receive("ok", (resp) => {
@@ -20,9 +24,11 @@ export const usePhoenixSocket = () => {
         console.log("Unable to join", resp);
       });
 
-    // Listen for incoming messages
-    channel.on("ping", (payload) => {
-      console.log("Received ping", payload);
+    setChannel(channel);
+
+    // Listen for 'connection_ack' event
+    channel.on("connection_ack", (msg) => {
+      setMessages((prevMessages) => [...prevMessages, msg]);
     });
 
     // Clean up the socket and channel when the component unmounts
@@ -30,7 +36,13 @@ export const usePhoenixSocket = () => {
       channel.leave();
       socket.disconnect();
     };
-  }, []);
+  }, [channelTopic]);
 
-  // You could return some functions to send messages, etc., from here
+  const sendMessage = () => {
+    if (channel) {
+      channel.push("new_message", { body: "Hello world!" });
+    }
+  };
+
+  return { messages, sendMessage };
 };

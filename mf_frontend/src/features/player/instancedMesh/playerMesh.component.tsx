@@ -44,10 +44,10 @@ export const PlayerMesh: React.FC<PlayerMeshProps> = ({ direction }) => {
           // Calculate the offset based on the current scale of the head instance
           let offset = new Vector3();
           switch (headInstance.direction) {
-            case Controls.forward:
+            case Controls.up:
               offset.setY(headInstance.scale.y / 2);
               break;
-            case Controls.back:
+            case Controls.down:
               offset.setY(-headInstance.scale.y / 2);
               break;
             case Controls.left:
@@ -70,11 +70,11 @@ export const PlayerMesh: React.FC<PlayerMeshProps> = ({ direction }) => {
         // Update the scale and position of the head instance
         headInstance = { ...newInstances[newInstances.length - 1] }; // Re-fetch the head instance after a potential push
         switch (headInstance.direction) {
-          case Controls.forward:
+          case Controls.up:
             headInstance.scale.y += scaleSpeed;
             headInstance.position.y += scaleSpeed / 2;
             break;
-          case Controls.back:
+          case Controls.down:
             headInstance.scale.y += scaleSpeed;
             headInstance.position.y -= scaleSpeed / 2;
             break;

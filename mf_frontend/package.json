@@ -22,6 +22,7 @@
     "phoenix": "^1.7.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "styled-components": "^6.1.1",
     "three": "^0.158.0",
     "typescript": "5.1.6"
   },
@@ -29,5 +30,8 @@
     "@types/phoenix": "^1.6.3",
     "eslint-config-prettier": "^9.0.0",
     "prettier": "3.0.3"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

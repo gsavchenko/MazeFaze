@@ -1,10 +1,10 @@
 "use client";
 
-import { usePhoenixSocket } from "@/features/sockets";
+import { usePhoenixSocket } from "@/modules/features/sockets";
 import { Canvas } from "@react-three/fiber";
 import styles from "./page.module.css";
 import { Grid } from "./components/three/grid.component";
-import { Player } from "@/features/player";
+import { Player } from "@/modules/features/player";
 import styled from "styled-components";
 import { Indicator } from "./components";
 import { useEffect, useState } from "react";

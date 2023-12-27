@@ -26,8 +26,7 @@
     "react-dom": "18.2.0",
     "styled-components": "^6.1.1",
     "three": "^0.158.0",
-    "typescript": "5.1.6",
-    "yarn": "^1.22.21"
+    "typescript": "5.1.6"
   },
   "devDependencies": {
     "@types/phoenix": "^1.6.3",

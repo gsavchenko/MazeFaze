@@ -1,13 +1,12 @@
 "use client";
 
-import { usePhoenixSocket } from "@/modules/features/sockets";
 import { Canvas } from "@react-three/fiber";
 import styles from "./page.module.css";
 import { Grid } from "./components/three/grid.component";
 import { Player } from "@/modules/features/player";
 import styled from "styled-components";
 import { Indicator } from "./components";
-import { useEffect, useState } from "react";
+import { useConnectionStatusSubscription } from "@/modules/data-api/queries";
 
 const StyledScene = styled.div`
   width: 90vw; // 100% of the viewport width
@@ -26,20 +25,13 @@ const IndicatorContainer = styled.div`
 `;
 
 export default function Home() {
-  const { messages } = usePhoenixSocket("room:lobby");
-  const [connectionStatus, setConnectionStatus] = useState("disconnected");
-
-  useEffect(() => {
-    const lastMessage = messages[messages.length - 1];
-
-    setConnectionStatus(lastMessage?.status || "disconnected");
-  }, [messages]);
+  const { data } = useConnectionStatusSubscription();
 
   return (
     <>
       <IndicatorContainer>
         <Indicator
-          color={connectionStatus === "connected" ? "green" : "red"}
+          color={data?.status === "connected" ? "green" : "red"}
           label="connection"
         />
       </IndicatorContainer>

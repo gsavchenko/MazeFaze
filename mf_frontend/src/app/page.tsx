@@ -7,6 +7,7 @@ import { Player } from "@/modules/features/player";
 import styled from "styled-components";
 import { Indicator } from "./components";
 import { useConnectionStatusSubscription } from "@/modules/data-api/queries";
+import { useEffect } from "react";
 
 const StyledScene = styled.div`
   width: 90vw; // 100% of the viewport width
@@ -25,6 +26,21 @@ const IndicatorContainer = styled.div`
 `;
 
 export default function Home() {
+  useEffect(() => {
+    // @NOTE: blacklisting arrow keys so that the page doesn't move
+    const blacklistedKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+
+    window.addEventListener(
+      "keydown",
+      (event) => {
+        if (blacklistedKeys.includes(event.code)) {
+          event.preventDefault();
+        }
+      },
+      false,
+    );
+  }, []);
+
   const { data } = useConnectionStatusSubscription();
 
   return (

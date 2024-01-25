@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Vector3 } from "three";
+import { Box3, Vector3 } from "three";
 import { Controls } from "../player.component";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 
 interface PlayerInstance {
   position: Vector3;
@@ -89,6 +89,25 @@ export const usePlayerInstances = (direction: Controls) => {
 
       return newInstances;
     });
+
+    for (let i = 0; i < instances.length; i++) {
+      const box1 = new Box3().setFromCenterAndSize(
+        instances[i].position,
+        instances[i].scale,
+      );
+
+      for (let j = i + 1; j < instances.length; j++) {
+        const box2 = new Box3().setFromCenterAndSize(
+          instances[j].position,
+          instances[j].scale,
+        );
+
+        if (box1.intersectsBox(box2)) {
+          console.log(`Instance ${i} intersects with instance ${j}`);
+          // Handle the intersection
+        }
+      }
+    }
   });
 
   return instances;
